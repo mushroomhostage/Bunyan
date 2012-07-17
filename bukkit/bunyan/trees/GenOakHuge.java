@@ -65,19 +65,19 @@ public class GenOakHuge extends TreeGenerator
             {
                 if ((Math.abs(var5) != 3 || Math.abs(var6) != 3) && (Math.abs(var5) != 3 || Math.abs(var6) != 2) && (Math.abs(var5) != 2 || Math.abs(var6) != 3) && (var5 != 0 || var6 != 0) && var1.getTypeId(var2 + var5, var3, var4 + var6) == 0)
                 {
-                    this.setTypeAndData(var1, var2 + var5, var3, var4 + var6, this.blockLeaf, this.metaLeaf);
+                    this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2 + var5, var3, var4 + var6, this.blockLeaf, this.metaLeaf);
                 }
 
                 if (Math.abs(var5) < 3 && Math.abs(var6) < 3 && (Math.abs(var5) != 2 || Math.abs(var6) != 2))
                 {
                     if (var1.getTypeId(var2 + var5, var3 - 1, var4 + var6) == 0)
                     {
-                        this.setTypeAndData(var1, var2 + var5, var3 - 1, var4 + var6, this.blockLeaf, this.metaLeaf);
+                        this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2 + var5, var3 - 1, var4 + var6, this.blockLeaf, this.metaLeaf);
                     }
 
                     if (var1.getTypeId(var2 + var5, var3 + 1, var4 + var6) == 0)
                     {
-                        this.setTypeAndData(var1, var2 + var5, var3 + 1, var4 + var6, this.blockLeaf, this.metaLeaf);
+                        this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2 + var5, var3 + 1, var4 + var6, this.blockLeaf, this.metaLeaf);
                     }
                 }
             }
@@ -139,7 +139,7 @@ public class GenOakHuge extends TreeGenerator
             {
                 for (int var11 = 0; var11 > -2; --var11)
                 {
-                    this.setTypeAndData(var1, var3 + var11, var4 + var8, var5 + var10, this.blockTrunk, WideLog.metadataWithDirection(this.metaTrunk, var7[var9++]));
+                    this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var3 + var11, var4 + var8, var5 + var10, this.blockTrunk, WideLog.metadataWithDirection(this.metaTrunk, var7[var9++]));
                 }
             }
         }
@@ -149,7 +149,7 @@ public class GenOakHuge extends TreeGenerator
     {
         for (int var9 = 0; var9 < 2 * var3 / 3; ++var9)
         {
-            this.setTypeAndData(var1, var6, var7, var8, this.blockWood, this.metaWood);
+            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var6, var7, var8, this.blockWood, this.metaWood);
 
             if (var2.nextInt(3) == 0 || var9 == 2 * var3 / 3 - 1)
             {
@@ -197,7 +197,7 @@ public class GenOakHuge extends TreeGenerator
     {
         for (int var9 = 0; var9 < var3 / 3; ++var9)
         {
-            this.setTypeAndData(var1, var6, var7, var8, this.blockWood, this.metaWood);
+            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var6, var7, var8, this.blockWood, this.metaWood);
 
             if (var2.nextInt(3) == 0 || var9 == var3 / 3 - 1)
             {
@@ -303,7 +303,7 @@ public class GenOakHuge extends TreeGenerator
                     ++var7;
             }
 
-            this.setTypeAndData(var1, var6, var7, var8, this.blockWood, this.metaWood);
+            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var6, var7, var8, this.blockWood, this.metaWood);
 
             if (var2.nextInt(3) == 0 || var10 == var3 - 1)
             {
@@ -371,7 +371,7 @@ public class GenOakHuge extends TreeGenerator
                     ++var12;
                 }
 
-                this.setTypeAndData(var1, var11, var12, var13, this.blockWood, this.metaWood);
+                this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var11, var12, var13, this.blockWood, this.metaWood);
 
                 if (var2.nextInt(4) == 0 || var9 == var3 - 1)
                 {

@@ -42,7 +42,7 @@ public abstract class TreeGenStraightNoBranchesWide extends TreeGenStraightNoBra
         {
             var1.setData(var2, var3, var4, var5);
         }
-        else if (var1.isLoaded(var2, var3, var4) && var1.getChunkAtWorldCoords(var2, var4).field_50025_o)
+        else if (var1.isLoaded(var2, var3, var4) && var1.getChunkAtWorldCoords(var2, var4).seenByPlayer)
         {
             if (var1.setRawData(var2, var3, var4, var5))
             {
@@ -61,13 +61,13 @@ public abstract class TreeGenStraightNoBranchesWide extends TreeGenStraightNoBra
 
         if (Block.byId[var5] == null || var5 == Block.SNOW.id || Block.byId[var5].isLeaves(var1, var2, var3, var4))
         {
-            this.setTypeAndData(var1, var2, var3, var4, this.blockWood, this.metaWood);
+            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2, var3, var4, this.blockWood, this.metaWood);
             this.setMetadata(var1, var2, var3, var4, WideLog.metadataWithDirection(this.metaWood, 3));
-            this.setTypeAndData(var1, var2 - 1, var3, var4, this.blockWood, this.metaWood);
+            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2 - 1, var3, var4, this.blockWood, this.metaWood);
             this.setMetadata(var1, var2 - 1, var3, var4, WideLog.metadataWithDirection(this.metaWood, 4));
-            this.setTypeAndData(var1, var2, var3, var4 - 1, this.blockWood, this.metaWood);
+            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2, var3, var4 - 1, this.blockWood, this.metaWood);
             this.setMetadata(var1, var2, var3, var4 - 1, WideLog.metadataWithDirection(this.metaWood, 2));
-            this.setTypeAndData(var1, var2 - 1, var3, var4 - 1, this.blockWood, this.metaWood);
+            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2 - 1, var3, var4 - 1, this.blockWood, this.metaWood);
             this.setMetadata(var1, var2 - 1, var3, var4 - 1, WideLog.metadataWithDirection(this.metaWood, 5));
         }
     }

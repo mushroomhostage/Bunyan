@@ -68,7 +68,7 @@ public class DeadTreeHuge extends TreeGenStraightNoBranchesWide
 
                             if (var9 < var7[var14])
                             {
-                                this.setTypeAndData(var1, var3 + var13, var4 + var9, var5 + var12, this.blockWood, this.metaWood);
+                                this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var3 + var13, var4 + var9, var5 + var12, this.blockWood, this.metaWood);
                                 this.setMetadata(var1, var3 + var13, var4 + var9, var5 + var12, WideLog.metadataWithDirection(this.metaWood, var10[var11]));
                             }
 

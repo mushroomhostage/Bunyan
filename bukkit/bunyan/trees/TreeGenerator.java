@@ -114,7 +114,7 @@ public abstract class TreeGenerator extends WorldGenerator
 
             if (var5 == null || var5.canBeReplacedByLeaves(var1, var2, var3, var4))
             {
-                this.setTypeAndData(var1, var2, var3, var4, this.blockLeaf, this.metaLeaf);
+                this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2, var3, var4, this.blockLeaf, this.metaLeaf);
             }
         }
     }
@@ -125,7 +125,7 @@ public abstract class TreeGenerator extends WorldGenerator
 
         if (Block.byId[var5] == null || var5 == Block.SNOW.id || Block.byId[var5].isLeaves(var1, var2, var3, var4))
         {
-            this.setTypeAndData(var1, var2, var3, var4, this.blockWood, this.metaWood);
+            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2, var3, var4, this.blockWood, this.metaWood);
         }
     }
 }
