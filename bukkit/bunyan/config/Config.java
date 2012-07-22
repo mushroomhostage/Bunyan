@@ -37,13 +37,15 @@ public enum Config
         config = new Configuration(new File(Proxy.getMinecraftDir(), "/config/extrabiomes/bunyan.cfg"));
         config.load();
         ConfigureBlocks.initialize();
-        CraftingRecipes.addRecipes();
+        ConfigureItems.initialize();
+        CraftingRecipes.initialize();
         config.save();
     }
 
     public static void onModsLoaded()
     {
         ConfigureBlocks.addNames();
+        ConfigureItems.addNames();
         ConfigureOreDictionary.initialize();
     }
 }

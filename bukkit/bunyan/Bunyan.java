@@ -1,5 +1,6 @@
 package bunyan;
 
+import bunyan.blocks.RenderManager;
 import bunyan.config.Config;
 import bunyan.trees.DeadTreeHuge;
 import bunyan.trees.GenFirTree;
@@ -22,7 +23,7 @@ public enum Bunyan
 {
     INSTANCE;
     private static final String NAME = "Bunyan";
-    private static final String VERSION = "1.3";
+    private static final String VERSION = "1.4";
     private static IOreHandler woodOreHandler;
 
     public static boolean clientSideRequired()
@@ -37,7 +38,7 @@ public enum Bunyan
 
     public static String getVersion()
     {
-        return "1.3";
+        return "1.4";
     }
 
     public static void onGenerateSurface(World var0, Random var1, int var2, int var3)
@@ -95,17 +96,25 @@ public enum Bunyan
     public static void onLoad(NetworkMod var0)
     {
         Proxy.preloadTexture("/bunyan/blocks/blocks.png");
+        Proxy.preloadTexture("/bunyan/items/items.png");
         Config.onLoad();
+        RenderManager.initialize(var0);
         woodOreHandler = new WoodOreHandler();
         OreDictionary.registerOreHandler(woodOreHandler);
         PluginManager.plugins.add(ExtrabiomesPlugin.INSTANCE);
         TerrainGenManager.treesCanGrowOnIDs.add(Integer.valueOf(Block.DIRT.id));
         TerrainGenManager.treesCanGrowOnIDs.add(Integer.valueOf(Block.GRASS.id));
         TerrainGenManager.treesCanGrowOnIDs.add(Integer.valueOf(Block.SOIL.id));
+        KeyPressManager.registerKeys(var0);
     }
 
     public static void onModsLoaded()
     {
         Config.onModsLoaded();
+
+        if (modEE.isEnabled())
+        {
+            modEE.INSTANCE.activate();
+        }
     }
 }

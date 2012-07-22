@@ -1,7 +1,8 @@
 package bunyan.trees;
 
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
 import bunyan.blocks.BunyanBlock;
-import bunyan.blocks.WideLog;
 import extrabiomes.api.TerrainGenManager;
 import java.util.Random;
 import net.minecraft.server.Block;
@@ -57,7 +58,7 @@ public class DeadTreeHuge extends TreeGenStraightNoBranchesWide
             {
                 for (int var9 = 0; var9 < var8; ++var9)
                 {
-                    int[] var10 = new int[] {3, 4, 2, 5};
+                    Direction[] var10 = new Direction[] {Direction.SOUTH, Direction.WEST, Direction.NORTH, Direction.EAST};
                     int var11 = 0;
 
                     for (int var12 = 0; var12 > -2; --var12)
@@ -68,8 +69,7 @@ public class DeadTreeHuge extends TreeGenStraightNoBranchesWide
 
                             if (var9 < var7[var14])
                             {
-                                this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var3 + var13, var4 + var9, var5 + var12, this.blockWood, this.metaWood);
-                                this.setMetadata(var1, var3 + var13, var4 + var9, var5 + var12, WideLog.metadataWithDirection(this.metaWood, var10[var11]));
+                                this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var3 + var13, var4 + var9, var5 + var12, this.blockWood, DirectionalBlock.getCompositeDataAndFacing(this.metaWood, var10[var11]));
                             }
 
                             ++var11;

@@ -1,15 +1,19 @@
 package bunyan.blocks;
 
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
+import bunyan.api.ITurnable;
 import java.util.ArrayList;
 import java.util.Random;
 import net.minecraft.server.Block;
 import net.minecraft.server.BlockLog;
 import net.minecraft.server.Entity;
+import net.minecraft.server.EntityHuman;
 import net.minecraft.server.IBlockAccess;
 import net.minecraft.server.ItemStack;
 import net.minecraft.server.World;
 
-public class CustomLog extends BlockLog
+public class CustomLog extends BlockLog implements ITurnable
 {
     public static final int metaFir = 1;
     public static final int metaAcacia = 2;
@@ -17,7 +21,7 @@ public class CustomLog extends BlockLog
     public CustomLog(int var1)
     {
         super(var1);
-        this.textureId = 0;
+        this.textureId = 70;
         this.a(e);
         this.j();
         this.c(Block.LOG.m());
@@ -81,5 +85,15 @@ public class CustomLog extends BlockLog
     public int getDropType(int var1, Random var2, int var3)
     {
         return this.id;
+    }
+
+    public void onLogTurner(EntityHuman var1, World var2, int var3, int var4, int var5, Direction var6)
+    {
+        if (var6 != Direction.DOWN && var6 != Direction.UP)
+        {
+            int var7 = var2.getData(var3, var4, var5);
+            var2.setRawTypeId(var3, var4, var5, BunyanBlock.turnableCustomWood.id);
+            DirectionalBlock.setDataAndFacing(var2, var3, var4, var5, var7, var6, true);
+        }
     }
 }

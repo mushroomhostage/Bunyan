@@ -1,6 +1,7 @@
 package bunyan.config;
 
 import bunyan.blocks.BunyanBlock;
+import bunyan.items.BunyanItem;
 import forge.oredict.OreDictionary;
 import net.minecraft.server.ItemStack;
 
@@ -23,5 +24,7 @@ public class ConfigureOreDictionary
         OreDictionary.registerOre("planksWood", new ItemStack(BunyanBlock.planks, 1, 2));
         OreDictionary.registerOre("planksWood", new ItemStack(BunyanBlock.planks, 1, 1));
         OreDictionary.registerOre("planksWood", new ItemStack(BunyanBlock.planks, 1, 0));
+        OreDictionary.registerOre("toolWood", BunyanItem.logTurner);
+        OreDictionary.registerOre("toolLogTurner", BunyanItem.logTurner);
     }
 }

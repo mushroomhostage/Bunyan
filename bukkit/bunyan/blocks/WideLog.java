@@ -1,41 +1,26 @@
 package bunyan.blocks;
 
-import forge.ITextureProvider;
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
+import bunyan.api.TurnableLog;
 import java.util.ArrayList;
 import java.util.Random;
-import net.minecraft.server.Block;
-import net.minecraft.server.BlockLog;
-import net.minecraft.server.Entity;
+import net.minecraft.server.EntityHuman;
+import net.minecraft.server.EntityLiving;
 import net.minecraft.server.IBlockAccess;
 import net.minecraft.server.ItemStack;
+import net.minecraft.server.MathHelper;
 import net.minecraft.server.World;
 
-public class WideLog extends BlockLog implements ITextureProvider
+public class WideLog extends TurnableLog
 {
     public static final int metaRedwood = 0;
     public static final int metaFir = 1;
     public static final int metaOak = 2;
 
-    public static int metadataWithDirection(int var0, int var1)
-    {
-        var1 -= 2;
-        return var0 | var1 << 2;
-    }
-
-    public static void setDirection(World var0, int var1, int var2, int var3, byte var4)
-    {
-        int var5 = var0.getData(var1, var2, var3);
-        var0.setData(var1, var2, var3, metadataWithDirection(var5, var4));
-    }
-
     public WideLog(int var1)
     {
-        super(var1);
-        this.textureId = 0;
-        this.a(e);
-        this.c(Block.LOG.m());
-        this.b(Block.LOG.a((Entity)null) * 5.0F);
-        this.j();
+        super(var1, 48);
     }
 
     public void addCreativeItems(ArrayList var1)
@@ -46,180 +31,11 @@ public class WideLog extends BlockLog implements ITextureProvider
     }
 
     /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
+     * The type of render function that is called for this block
      */
-    protected int getDropData(int var1)
+    public int c()
     {
-        return var1 & 3;
-    }
-
-    /**
-     * Spawns EntityItem in the world for the given ItemStack if the world is not remote.
-     */
-    protected void a(World var1, int var2, int var3, int var4, ItemStack var5)
-    {
-        var5.setData(var5.getData() & 3);
-        super.a(var1, var2, var3, var4, var5);
-    }
-
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
-    public int a(int var1, int var2)
-    {
-        int var3 = ((var2 & 12) >> 2) + 2;
-        var2 &= 3;
-        byte var4 = 0;
-        byte var5 = 0;
-
-        if (var1 != 0 && var1 != 1)
-        {
-            if (var1 == 2)
-            {
-                if (var3 == 2)
-                {
-                    var4 = 0;
-                    var5 = 0;
-                }
-                else if (var3 == 3)
-                {
-                    var4 = 3;
-                    var5 = 0;
-                }
-                else if (var3 == 4)
-                {
-                    var4 = 3;
-                    var5 = 1;
-                }
-                else if (var3 == 5)
-                {
-                    var4 = 0;
-                    var5 = 1;
-                }
-            }
-            else if (var1 == 3)
-            {
-                if (var3 == 2)
-                {
-                    var4 = 3;
-                    var5 = 1;
-                }
-                else if (var3 == 3)
-                {
-                    var4 = 0;
-                    var5 = 1;
-                }
-                else if (var3 == 4)
-                {
-                    var4 = 0;
-                    var5 = 0;
-                }
-                else if (var3 == 5)
-                {
-                    var4 = 3;
-                    var5 = 0;
-                }
-            }
-            else if (var1 == 4)
-            {
-                if (var3 == 2)
-                {
-                    var4 = 3;
-                    var5 = 0;
-                }
-                else if (var3 == 3)
-                {
-                    var4 = 3;
-                    var5 = 1;
-                }
-                else if (var3 == 4)
-                {
-                    var4 = 0;
-                    var5 = 1;
-                }
-                else if (var3 == 5)
-                {
-                    var4 = 0;
-                    var5 = 0;
-                }
-            }
-            else if (var1 == 5)
-            {
-                if (var3 == 2)
-                {
-                    var4 = 0;
-                    var5 = 1;
-                }
-                else if (var3 == 3)
-                {
-                    var4 = 0;
-                    var5 = 0;
-                }
-                else if (var3 == 4)
-                {
-                    var4 = 3;
-                    var5 = 0;
-                }
-                else if (var3 == 5)
-                {
-                    var4 = 3;
-                    var5 = 1;
-                }
-            }
-        }
-        else if (var3 == 2)
-        {
-            var4 = 1;
-            var5 = 1;
-        }
-        else if (var3 == 3)
-        {
-            var4 = 2;
-            var5 = 1;
-        }
-        else if (var3 == 4)
-        {
-            var4 = 2;
-            var5 = 0;
-        }
-        else if (var3 == 5)
-        {
-            var4 = 1;
-            var5 = 0;
-        }
-
-        return (var4 + 3) * 16 + var5 + var2 * 2;
-    }
-
-    /**
-     * Returns how much this block can resist explosions from the passed in entity.
-     */
-    public float a(Entity var1)
-    {
-        return Block.LOG.a(var1);
-    }
-
-    public int getFireSpreadSpeed(World var1, int var2, int var3, int var4, int var5, int var6)
-    {
-        return Block.LOG.getFireSpreadSpeed(var1, var2, var3, var4, var5, var6);
-    }
-
-    public int getFlammability(IBlockAccess var1, int var2, int var3, int var4, int var5, int var6)
-    {
-        return Block.LOG.getFlammability(var1, var2, var3, var4, var5, var6);
-    }
-
-    /**
-     * Returns the block hardness.
-     */
-    public float m()
-    {
-        return Block.LOG.m();
-    }
-
-    public float getHardness(int var1)
-    {
-        return Block.LOG.getHardness(var1);
+        return 0;
     }
 
     public String getTextureFile()
@@ -227,105 +43,294 @@ public class WideLog extends BlockLog implements ITextureProvider
         return "/bunyan/blocks/blocks.png";
     }
 
+    public int getTextureOffsetFromFacingSideAndMetadata(Direction var1, Direction var2, int var3)
+    {
+        int var4 = getDataFromMetadata(var3);
+        byte var5 = 0;
+        byte var6 = 0;
+
+        switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var2.ordinal()])
+        {
+            case 1:
+                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                {
+                    case 1:
+                        var5 = 0;
+                        var6 = 0;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 2:
+                        var5 = 3;
+                        var6 = 0;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 3:
+                        var5 = 3;
+                        var6 = 1;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 4:
+                        var5 = 0;
+                        var6 = 1;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    default:
+                        return var5 * 16 + var6 + var4 * 2;
+                }
+
+            case 2:
+                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                {
+                    case 1:
+                        var5 = 3;
+                        var6 = 1;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 2:
+                        var5 = 0;
+                        var6 = 1;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 3:
+                        var5 = 0;
+                        var6 = 0;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 4:
+                        var5 = 3;
+                        var6 = 0;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    default:
+                        return var5 * 16 + var6 + var4 * 2;
+                }
+
+            case 3:
+                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                {
+                    case 1:
+                        var5 = 3;
+                        var6 = 0;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 2:
+                        var5 = 3;
+                        var6 = 1;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 3:
+                        var5 = 0;
+                        var6 = 1;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 4:
+                        var5 = 0;
+                        var6 = 0;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    default:
+                        return var5 * 16 + var6 + var4 * 2;
+                }
+
+            case 4:
+                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                {
+                    case 1:
+                        var5 = 0;
+                        var6 = 1;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 2:
+                        var5 = 0;
+                        var6 = 0;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 3:
+                        var5 = 3;
+                        var6 = 0;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    case 4:
+                        var5 = 3;
+                        var6 = 1;
+                        return var5 * 16 + var6 + var4 * 2;
+
+                    default:
+                        return var5 * 16 + var6 + var4 * 2;
+                }
+
+            case 5:
+            case 6:
+                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                {
+                    case 1:
+                        var5 = 1;
+                        var6 = 1;
+                        break;
+
+                    case 2:
+                        var5 = 2;
+                        var6 = 1;
+                        break;
+
+                    case 3:
+                        var5 = 2;
+                        var6 = 0;
+                        break;
+
+                    case 4:
+                        var5 = 1;
+                        var6 = 0;
+                }
+        }
+
+        return var5 * 16 + var6 + var4 * 2;
+    }
+
     /**
      * Returns the ID of the items to drop on destruction.
      */
     public int getDropType(int var1, Random var2, int var3)
     {
-        return this.id;
+        return BunyanBlock.widewood.id;
     }
 
     /**
-     * Called whenever the block is added into the world. Args: world, x, y, z
+     * Called when the block is placed in the world.
      */
-    public void onPlace(World var1, int var2, int var3, int var4)
+    public void postPlace(World var1, int var2, int var3, int var4, EntityLiving var5)
     {
-        super.onPlace(var1, var2, var3, var4);
-        this.setDefaultDirection(var1, var2, var3, var4);
-    }
+        Direction var6 = Direction.NORTH;
 
-    private void setDefaultDirection(World var1, int var2, int var3, int var4)
-    {
-        if (!var1.isStatic)
+        if (var5 != null)
         {
-            int var5 = var1.getTypeId(var2, var3, var4 - 1);
-            int var6 = var1.getTypeId(var2, var3, var4 + 1);
-            int var7 = var1.getTypeId(var2 - 1, var3, var4);
-            int var8 = var1.getTypeId(var2 + 1, var3, var4);
-            byte var9 = 3;
+            int var7 = MathHelper.floor((double)(var5.yaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-            if (var5 != this.id && var6 != this.id && var7 != this.id && var8 != this.id)
+            switch (var7)
             {
-                if (Block.n[var5] && !Block.n[var6])
-                {
-                    var9 = 3;
-                }
+                case 0:
+                    var6 = Direction.SOUTH;
+                    break;
 
-                if (Block.n[var6] && !Block.n[var5])
-                {
-                    var9 = 2;
-                }
+                case 1:
+                    var6 = Direction.WEST;
+                    break;
 
-                if (Block.n[var7] && !Block.n[var8])
-                {
-                    var9 = 5;
-                }
+                case 2:
+                    var6 = Direction.EAST;
+                    break;
 
-                if (Block.n[var8] && !Block.n[var7])
-                {
-                    var9 = 4;
-                }
-
-                setDirection(var1, var2, var3, var4, var9);
+                case 3:
+                    var6 = Direction.NORTH;
             }
-            else
-            {
-                this.setSmartDirection(var1, var2, var3, var4);
-            }
+
+            setFacing(var1, var2, var3, var4, var6, true);
         }
     }
 
-    private void setSmartDirection(World var1, int var2, int var3, int var4)
+    public void onLogTurner(EntityHuman var1, World var2, int var3, int var4, int var5, Direction var6)
     {
-        int var5 = var1.getTypeId(var2, var3, var4 + 1);
-        int var6 = 3;
         int var7;
-        int var8;
 
-        if (var5 == this.id)
+        if (var6 == Direction.UP)
         {
-            var7 = var1.getData(var2, var3, var4 + 1);
-            var8 = ((var7 & 12) >> 2) + 2;
-            var6 = var8 == 3 ? 2 : (var8 == 2 ? 3 : (var8 == 4 ? 5 : 4));
+            var7 = DirectionalBlock.getDataFromMetadata(var2.getData(var3, var4, var5));
+            var2.setRawTypeIdAndData(var3, var4, var5, BunyanBlock.widewoodBarkBottom.id, var7);
+            BunyanBlock.widewoodBarkBottom.postPlace(var2, var3, var4, var5, var1);
         }
-
-        var5 = var1.getTypeId(var2, var3, var4 - 1);
-
-        if (var5 == this.id)
+        else if (var6 == Direction.DOWN)
         {
-            var7 = var1.getData(var2, var3, var4 - 1);
-            var8 = ((var7 & 12) >> 2) + 2;
-            var6 = var8 == 3 ? 2 : (var8 == 2 ? 3 : (var8 == 4 ? 5 : 4));
+            var7 = DirectionalBlock.getDataFromMetadata(var2.getData(var3, var4, var5));
+            var2.setRawTypeIdAndData(var3, var4, var5, BunyanBlock.widewoodBarkTop.id, var7);
+            BunyanBlock.widewoodBarkTop.postPlace(var2, var3, var4, var5, var1);
         }
-
-        var5 = var1.getTypeId(var2 - 1, var3, var4);
-
-        if (var5 == this.id)
+        else
         {
-            var7 = var1.getData(var2 - 1, var3, var4);
-            var8 = ((var7 & 12) >> 2) + 2;
-            var6 = var8 == 3 ? 4 : (var8 == 4 ? 3 : (var8 == 2 ? 5 : 2));
+            Direction var8 = Direction.NORTH;
+
+            switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var6.ordinal()])
+            {
+                case 1:
+                case 4:
+                    var8 = var6.oppositeSide();
+                    break;
+
+                case 2:
+                    var8 = var6.leftSide();
+                    break;
+
+                case 3:
+                    var8 = var6.rightSide();
+            }
+
+            DirectionalBlock.setFacing(var2, var3, var4, var5, var8, true);
         }
+    }
 
-        var5 = var1.getTypeId(var2 + 1, var3, var4);
+    public boolean render(IBlockAccess var1, int var2, int var3, int var4, int var5)
+    {
+        return RenderManager.renderRotatedLog(this, var1, var2, var3, var4, var5);
+    }
 
-        if (var5 == this.id)
+    static class NamelessClass1555442305
+    {
+        static final int[] $SwitchMap$bunyan$api$Direction = new int[Direction.values().length];
+
+        static
         {
-            var7 = var1.getData(var2 + 1, var3, var4);
-            var8 = ((var7 & 12) >> 2) + 2;
-            var6 = var8 == 3 ? 4 : (var8 == 4 ? 3 : (var8 == 2 ? 5 : 2));
-        }
+            try
+            {
+                $SwitchMap$bunyan$api$Direction[Direction.NORTH.ordinal()] = 1;
+            }
+            catch (NoSuchFieldError var6)
+            {
+                ;
+            }
 
-        setDirection(var1, var2, var3, var4, (byte)var6);
+            try
+            {
+                $SwitchMap$bunyan$api$Direction[Direction.SOUTH.ordinal()] = 2;
+            }
+            catch (NoSuchFieldError var5)
+            {
+                ;
+            }
+
+            try
+            {
+                $SwitchMap$bunyan$api$Direction[Direction.WEST.ordinal()] = 3;
+            }
+            catch (NoSuchFieldError var4)
+            {
+                ;
+            }
+
+            try
+            {
+                $SwitchMap$bunyan$api$Direction[Direction.EAST.ordinal()] = 4;
+            }
+            catch (NoSuchFieldError var3)
+            {
+                ;
+            }
+
+            try
+            {
+                $SwitchMap$bunyan$api$Direction[Direction.DOWN.ordinal()] = 5;
+            }
+            catch (NoSuchFieldError var2)
+            {
+                ;
+            }
+
+            try
+            {
+                $SwitchMap$bunyan$api$Direction[Direction.UP.ordinal()] = 6;
+            }
+            catch (NoSuchFieldError var1)
+            {
+                ;
+            }
+        }
     }
 }

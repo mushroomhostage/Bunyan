@@ -1,6 +1,7 @@
 package bunyan.trees;
 
-import bunyan.blocks.WideLog;
+import bunyan.api.Direction;
+import bunyan.api.DirectionalBlock;
 import java.util.Random;
 import net.minecraft.server.Block;
 import net.minecraft.server.World;
@@ -17,41 +18,39 @@ public abstract class TreeGenStraightNoBranchesWide extends TreeGenStraightNoBra
 
     protected void growRoots(World var1, Random var2, int var3, int var4, int var5)
     {
-        super.growRoots(var1, var2, var3, var4, var5);
-        super.growRoots(var1, var2, var3 - 1, var4, var5);
-        super.growRoots(var1, var2, var3, var4, var5 - 1);
-        super.growRoots(var1, var2, var3 - 1, var4, var5 - 1);
+        for (int var6 = 0; var6 > -2; --var6)
+        {
+            for (int var7 = 0; var7 > -2; --var7)
+            {
+                super.growRoots(var1, var2, var3 + var7, var4, var5 + var6);
+            }
+        }
     }
 
     protected boolean isGoodSoil(World var1, int var2, int var3, int var4)
     {
-        return super.isGoodSoil(var1, var2, var3, var4) && super.isGoodSoil(var1, var2, var3, var4 - 1) && super.isGoodSoil(var1, var2 - 1, var3, var4) && super.isGoodSoil(var1, var2 - 1, var3, var4 - 1);
+        for (int var5 = 0; var5 > -2; --var5)
+        {
+            for (int var6 = 0; var6 > -2; --var6)
+            {
+                if (!super.isGoodSoil(var1, var2 + var6, var3, var4 + var5))
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     protected void setLeafBlock(World var1, int var2, int var3, int var4)
     {
-        super.setLeafBlock(var1, var2, var3, var4);
-        super.setLeafBlock(var1, var2 - 1, var3, var4);
-        super.setLeafBlock(var1, var2, var3, var4 - 1);
-        super.setLeafBlock(var1, var2 - 1, var3, var4 - 1);
-    }
-
-    protected void setMetadata(World var1, int var2, int var3, int var4, int var5)
-    {
-        if (doBlockNotify)
+        for (int var5 = 0; var5 > -2; --var5)
         {
-            var1.setData(var2, var3, var4, var5);
-        }
-        else if (var1.isLoaded(var2, var3, var4) && var1.getChunkAtWorldCoords(var2, var4).seenByPlayer)
-        {
-            if (var1.setRawData(var2, var3, var4, var5))
+            for (int var6 = 0; var6 > -2; --var6)
             {
-                var1.notify(var2, var3, var4);
+                super.setLeafBlock(var1, var2 + var6, var3, var4 + var5);
             }
-        }
-        else
-        {
-            var1.setRawData(var2, var3, var4, var5);
         }
     }
 
@@ -61,14 +60,16 @@ public abstract class TreeGenStraightNoBranchesWide extends TreeGenStraightNoBra
 
         if (Block.byId[var5] == null || var5 == Block.SNOW.id || Block.byId[var5].isLeaves(var1, var2, var3, var4))
         {
-            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2, var3, var4, this.blockWood, this.metaWood);
-            this.setMetadata(var1, var2, var3, var4, WideLog.metadataWithDirection(this.metaWood, 3));
-            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2 - 1, var3, var4, this.blockWood, this.metaWood);
-            this.setMetadata(var1, var2 - 1, var3, var4, WideLog.metadataWithDirection(this.metaWood, 4));
-            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2, var3, var4 - 1, this.blockWood, this.metaWood);
-            this.setMetadata(var1, var2, var3, var4 - 1, WideLog.metadataWithDirection(this.metaWood, 2));
-            this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2 - 1, var3, var4 - 1, this.blockWood, this.metaWood);
-            this.setMetadata(var1, var2 - 1, var3, var4 - 1, WideLog.metadataWithDirection(this.metaWood, 5));
+            Direction[] var6 = new Direction[] {Direction.SOUTH, Direction.WEST, Direction.NORTH, Direction.EAST};
+            int var7 = 0;
+
+            for (int var8 = 0; var8 > -2; --var8)
+            {
+                for (int var9 = 0; var9 > -2; --var9)
+                {
+                    this.setTypeAndData((org.bukkit.BlockChangeDelegate)var1, var2 + var9, var3, var4 + var8, this.blockWood, DirectionalBlock.getCompositeDataAndFacing(this.metaWood, var6[var7++]));
+                }
+            }
         }
     }
 }
