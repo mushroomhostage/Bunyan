@@ -157,7 +157,7 @@ public class GenOakHuge extends TreeGenerator
                 this.growLeafNode(var1, var6, var7, var8);
             }
 
-            switch (GenOakHuge.NamelessClass351880818.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var4.ordinal()])
+            switch (GenOakHuge.NamelessClass1896147467.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var4.ordinal()])
             {
                 case 1:
                     var6 += var2.nextInt(3) - 1;
@@ -171,7 +171,7 @@ public class GenOakHuge extends TreeGenerator
                     var6 -= var2.nextInt(2);
             }
 
-            switch (GenOakHuge.NamelessClass351880818.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var5.ordinal()])
+            switch (GenOakHuge.NamelessClass1896147467.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var5.ordinal()])
             {
                 case 1:
                     var8 += var2.nextInt(3) - 1;
@@ -205,7 +205,7 @@ public class GenOakHuge extends TreeGenerator
                 this.growLeafNode(var1, var6, var7, var8);
             }
 
-            switch (GenOakHuge.NamelessClass351880818.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var4.ordinal()])
+            switch (GenOakHuge.NamelessClass1896147467.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var4.ordinal()])
             {
                 case 1:
                     var6 += var2.nextInt(3) - 1;
@@ -219,7 +219,7 @@ public class GenOakHuge extends TreeGenerator
                     var6 -= var2.nextInt(2);
             }
 
-            switch (GenOakHuge.NamelessClass351880818.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var5.ordinal()])
+            switch (GenOakHuge.NamelessClass1896147467.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var5.ordinal()])
             {
                 case 1:
                     var8 += var2.nextInt(3) - 1;
@@ -282,7 +282,7 @@ public class GenOakHuge extends TreeGenerator
 
         for (; var10 < var3; ++var10)
         {
-            switch (GenOakHuge.NamelessClass351880818.$SwitchMap$bunyan$trees$GenOakHuge$Acuteness[var9.ordinal()])
+            switch (GenOakHuge.NamelessClass1896147467.$SwitchMap$bunyan$trees$GenOakHuge$Acuteness[var9.ordinal()])
             {
                 case 1:
                     if (var2.nextInt(4) == 0)
@@ -311,7 +311,7 @@ public class GenOakHuge extends TreeGenerator
                 this.growLeafNode(var1, var6, var7, var8);
             }
 
-            switch (GenOakHuge.NamelessClass351880818.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var4.ordinal()])
+            switch (GenOakHuge.NamelessClass1896147467.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var4.ordinal()])
             {
                 case 1:
                     var6 += var2.nextInt(3) - 1;
@@ -325,7 +325,7 @@ public class GenOakHuge extends TreeGenerator
                     var6 -= var2.nextInt(2);
             }
 
-            switch (GenOakHuge.NamelessClass351880818.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var5.ordinal()])
+            switch (GenOakHuge.NamelessClass1896147467.$SwitchMap$bunyan$trees$GenOakHuge$BendDirection[var5.ordinal()])
             {
                 case 1:
                     var8 += var2.nextInt(3) - 1;
@@ -500,7 +500,7 @@ public class GenOakHuge extends TreeGenerator
         private BendDirection(String var1, int var2) {}
     }
 
-    static class NamelessClass351880818
+    static class NamelessClass1896147467
     {
         static final int[] $SwitchMap$bunyan$trees$GenOakHuge$BendDirection;
 

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import net.minecraft.server.EntityHuman;
 import net.minecraft.server.EntityLiving;
-import net.minecraft.server.IBlockAccess;
 import net.minecraft.server.ItemStack;
 import net.minecraft.server.MathHelper;
 import net.minecraft.server.World;
@@ -49,10 +48,10 @@ public class WideLog extends TurnableLog
         byte var5 = 0;
         byte var6 = 0;
 
-        switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var2.ordinal()])
+        switch (WideLog.NamelessClass1426508480.$SwitchMap$bunyan$api$Direction[var2.ordinal()])
         {
             case 1:
-                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                switch (WideLog.NamelessClass1426508480.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
                 {
                     case 1:
                         var5 = 0;
@@ -79,7 +78,7 @@ public class WideLog extends TurnableLog
                 }
 
             case 2:
-                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                switch (WideLog.NamelessClass1426508480.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
                 {
                     case 1:
                         var5 = 3;
@@ -106,7 +105,7 @@ public class WideLog extends TurnableLog
                 }
 
             case 3:
-                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                switch (WideLog.NamelessClass1426508480.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
                 {
                     case 1:
                         var5 = 3;
@@ -133,7 +132,7 @@ public class WideLog extends TurnableLog
                 }
 
             case 4:
-                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                switch (WideLog.NamelessClass1426508480.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
                 {
                     case 1:
                         var5 = 0;
@@ -161,7 +160,7 @@ public class WideLog extends TurnableLog
 
             case 5:
             case 6:
-                switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
+                switch (WideLog.NamelessClass1426508480.$SwitchMap$bunyan$api$Direction[var1.ordinal()])
                 {
                     case 1:
                         var5 = 1;
@@ -248,7 +247,7 @@ public class WideLog extends TurnableLog
         {
             Direction var8 = Direction.NORTH;
 
-            switch (WideLog.NamelessClass1555442305.$SwitchMap$bunyan$api$Direction[var6.ordinal()])
+            switch (WideLog.NamelessClass1426508480.$SwitchMap$bunyan$api$Direction[var6.ordinal()])
             {
                 case 1:
                 case 4:
@@ -267,12 +266,7 @@ public class WideLog extends TurnableLog
         }
     }
 
-    public boolean render(IBlockAccess var1, int var2, int var3, int var4, int var5)
-    {
-        return RenderManager.renderRotatedLog(this, var1, var2, var3, var4, var5);
-    }
-
-    static class NamelessClass1555442305
+    static class NamelessClass1426508480
     {
         static final int[] $SwitchMap$bunyan$api$Direction = new int[Direction.values().length];
 

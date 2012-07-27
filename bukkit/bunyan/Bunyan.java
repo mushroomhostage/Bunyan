@@ -23,7 +23,7 @@ public enum Bunyan
 {
     INSTANCE;
     private static final String NAME = "Bunyan";
-    private static final String VERSION = "1.4";
+    private static final String VERSION = "1.5";
     private static IOreHandler woodOreHandler;
 
     public static boolean clientSideRequired()
@@ -38,7 +38,7 @@ public enum Bunyan
 
     public static String getVersion()
     {
-        return "1.4";
+        return "1.5";
     }
 
     public static void onGenerateSurface(World var0, Random var1, int var2, int var3)
